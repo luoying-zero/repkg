@@ -49,17 +49,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-        sparse-checkout: |
-          RePKG/
+      #with:
+        #sparse-checkout: |
+          #RePKG/
     # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+        cache: true
 
     - run: |
-        cd RePKG
         dotnet publish -c Release -r win-x64 --self-contained true -o ../publish
 
     - name: Upload build artifacts
